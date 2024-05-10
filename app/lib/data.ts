@@ -51,6 +51,21 @@ export async function fetchLatestInvoices() {
     throw new Error('Failed to fetch the latest invoices.');
   }
 }
+export async function addInvoice(name: string) {
+  try {
+    // 假设数据库表名为 invoices，customer_id 需要根据实际情况确定
+    await sql`
+      INSERT INTO invoices (customer_id)
+      VALUES ((SELECT id FROM customers WHERE name = ${name}))
+    `;
+
+    // 在插入成功后，可以根据需要返回插入的数据或者其他信息
+    return { success: true, message: 'Invoice added successfully' };
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to add invoice.');
+  }
+}
 
 export async function fetchCardData() {
   try {

@@ -1,8 +1,8 @@
-import { Button } from 'antd';
+import ProTable from '@/app/ui/dashboard/ProTable';
 export default function Page() {
   return (
-    <p>
-      <Button>按钮</Button>
-    </p>
+    <>
+      <ProTable />
+    </>
   );
 }
